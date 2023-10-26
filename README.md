@@ -6,14 +6,28 @@ Some experiments implementing the same simple application in different languages
 
 ### Getting started
 
+Setting up the environment:
+
 ```shell
 > curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-> cargo new cli-app
-> cargo run
 ```
 
-Creates a very minimal 'hello world' app.
+Creating a new application:
+
+```shell
+> cargo new cli-app
+```
+
+Creates a very minimal 'hello world' CLI app. Can run using:
 
 ```shell
 > cargo run
 ```
+
+Adding `clap` as a dependency:
+
+```shell
+> cargo add clap
+```
+
+TODO - what happens when in a workspace?
