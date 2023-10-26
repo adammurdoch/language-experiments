@@ -27,7 +27,7 @@ Creates a very minimal 'hello world' CLI app. Can run using:
 Adding `clap` as a dependency:
 
 ```shell
-> cargo add clap
+> cargo add clap --features derive
 ```
 
 TODO - what happens when in a workspace?
