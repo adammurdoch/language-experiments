@@ -12,16 +12,21 @@ struct Cli {
     path: PathBuf,
 }
 
-fn main() {
+fn main() -> std::io::Result<()> {
     let args = Cli::parse();
     println!("Searching for '{}' in {}", args.pattern, args.path.display());
 
-    let file = File::open(&args.path).expect("could not open file");
+    let file = File::open(&args.path)?;
     let reader = BufReader::new(file);
     for line in reader.lines() {
-        let text = line.expect("could not read file");
+        let text = line.unwrap();
         if text.contains(&args.pattern) {
             println!("{}", text);
         }
     }
+    Ok(())
+}
+
+#[test]
+fn check_matches() {
 }
