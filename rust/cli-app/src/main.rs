@@ -17,16 +17,22 @@ fn main() -> std::io::Result<()> {
     println!("Searching for '{}' in {}", args.pattern, args.path.display());
 
     let file = File::open(&args.path)?;
-    let reader = BufReader::new(file);
-    for line in reader.lines() {
+    let mut reader = BufReader::new(file);
+    search(args.pattern, &mut reader);
+    Ok(())
+}
+
+fn search(pattern: String, input: &mut impl std::io::BufRead) {
+    for line in input.lines() {
         let text = line.unwrap();
-        if text.contains(&args.pattern) {
+        if text.contains(&pattern) {
             println!("{}", text);
         }
     }
-    Ok(())
 }
 
 #[test]
 fn check_matches() {
+    let mut input = "123".as_bytes() as &[u8];
+    search("1".to_string(), &mut input);
 }

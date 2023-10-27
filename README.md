@@ -27,7 +27,7 @@ This creates a very minimal 'hello world' CLI app.
 The application can be run using:
 
 ```shell
-> cargo run <args>
+> cargo run <pattern> <file>
 ```
 
 Adding a dependency:
