@@ -1,10 +1,14 @@
 # Language experiments
 
-Some experiments implementing the same simple application in different languages.
+Some experiments implementing the same simple applications in different languages.
+The goal of these experiments is to explore the tooling for the various language ecosystems, rather than the 
+capabilities of the languages themselves.
+
+The CLI application is a simple `grep` implementation. It uses an external args parsing library and the stdlib.
 
 # Rust
 
-### Getting started
+## CLI application
 
 Setting up the environment:
 
@@ -18,16 +22,22 @@ Creating a new application:
 > cargo new cli-app
 ```
 
-Creates a very minimal 'hello world' CLI app. Can run using:
+This creates a very minimal 'hello world' CLI app.
+
+The application can be run using:
 
 ```shell
-> cargo run
+> cargo run <args>
 ```
 
-Adding `clap` as a dependency:
+Adding a dependency:
 
 ```shell
 > cargo add clap --features derive
 ```
+
+This adds the most recent stable version of the dependency to the model.
+
+The quickstart guide did not include the `--features` flag and so compilation failed.
 
 TODO - what happens when in a workspace?
