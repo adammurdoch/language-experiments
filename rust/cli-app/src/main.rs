@@ -1,8 +1,7 @@
-#![allow(unused)]
-
 use clap::Parser;
 use std::io::BufRead;
 use std::io::BufReader;
+use std::io::Result;
 use std::fs::File;
 use std::path::PathBuf;
 
@@ -12,7 +11,7 @@ struct Cli {
     path: PathBuf,
 }
 
-fn main() -> std::io::Result<()> {
+fn main() -> Result<()> {
     let args = Cli::parse();
     println!("Searching for '{}' in {}", args.pattern, args.path.display());
 
@@ -22,7 +21,7 @@ fn main() -> std::io::Result<()> {
     Ok(())
 }
 
-fn search(pattern: String, input: &mut impl std::io::BufRead) {
+fn search(pattern: String, input: &mut impl BufRead) {
     for line in input.lines() {
         let text = line.unwrap();
         if text.contains(&pattern) {
