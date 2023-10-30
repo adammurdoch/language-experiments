@@ -15,6 +15,8 @@ fn main() -> Result<()> {
     let args = Cli::parse();
     println!("Searching for '{}' in {}", args.pattern, args.path.display());
 
+    lib::add(1, 2);
+
     let file = File::open(&args.path)?;
     let mut reader = BufReader::new(file);
     search(args.pattern, &mut reader);
