@@ -1,9 +1,9 @@
 use clap::Parser;
-use std::io::BufRead;
 use std::io::BufReader;
 use std::io::Result;
 use std::fs::File;
 use std::path::PathBuf;
+use search::search;
 
 #[derive(Parser)]
 struct Cli {
@@ -15,21 +15,10 @@ fn main() -> Result<()> {
     let args = Cli::parse();
     println!("Searching for '{}' in {}", args.pattern, args.path.display());
 
-    lib::add(1, 2);
-
     let file = File::open(&args.path)?;
     let mut reader = BufReader::new(file);
     search(args.pattern, &mut reader);
     Ok(())
-}
-
-fn search(pattern: String, input: &mut impl BufRead) {
-    for line in input.lines() {
-        let text = line.unwrap();
-        if text.contains(&pattern) {
-            println!("{}", text);
-        }
-    }
 }
 
 #[test]
