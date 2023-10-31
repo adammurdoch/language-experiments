@@ -24,6 +24,7 @@ Creating a new application:
 ```
 
 This creates a very minimal 'hello world' CLI app, creating the directory.
+Adds a `src/main.rs` source file.
 
 The application can be run using:
 
@@ -77,7 +78,7 @@ Creating a new application:
 > go mod init example/cli-app
 ```
 
-Then add a source file.
+Then add a `.go` source file in the directory.
 
 The application can be run using:
 
@@ -87,5 +88,5 @@ The application can be run using:
 
 Adding a dependency:
 
-- Import the library in a source file.
+- Add an import for the library in a source file.
 - Run `go mod tidy` to update the mod file.
