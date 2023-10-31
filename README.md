@@ -67,7 +67,7 @@ This adds the most recent stable version of the dependency to the model.
 
 Setting up the environment:
 
-- Download and run installer
+- Download and run the [installer](https://go.dev/doc/install)
 
 Creating a new application:
 
@@ -84,3 +84,8 @@ The application can be run using:
 ```shell
 > go run . 
 ```
+
+Adding a dependency:
+
+- Import the library in a source file.
+- Run `go mod tidy` to update the mod file.
