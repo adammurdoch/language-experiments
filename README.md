@@ -49,7 +49,9 @@ This adds the most recent stable version of the dependency to the model.
 - External dependencies are declared using a name and version.
 - Uses `crates.io` repository by default for resolving dependencies and publishing.
     - Not having to define this reduces noise.
+- Source lives in `src` directory, which is simple.
 - Unit test are mixed into the production source.
+- `cargo` command seems to honor the cargo version declared in the module file.
 
 ### TODO
 
@@ -80,6 +82,12 @@ Creating a new application:
 
 Then add a `.go` source file in the directory.
 
+The application can be built using
+
+```shell
+> go build
+```
+
 The application can be run using:
 
 ```shell
@@ -90,3 +98,7 @@ Adding a dependency:
 
 - Add an import for the library in a source file.
 - Run `go mod tidy` to update the mod file.
+
+### Notes
+
+- Everything seems to live in the module directory.
