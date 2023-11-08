@@ -5,4 +5,4 @@ edition = "2021"
 
 [dependencies]
 clap = { version = "4.4.7", features = ["derive"] }
-search = { path = "../search" }
+search = { version = "0.1.0", path = "../search" }
