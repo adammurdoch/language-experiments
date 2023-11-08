@@ -1,4 +1,7 @@
 package search
 
-func search(pattern string, path string) {
+import "fmt"
+
+func Search(pattern string, path string) {
+	fmt.Printf("Searching for '%s' in %s\n", pattern, path)
 }

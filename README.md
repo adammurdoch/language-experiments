@@ -131,6 +131,10 @@ Creating a new library:
 
 Adding a local dependency:
 
+- Add an import to the app source file
+- `go mod edit -replace example/search=../search`
+- `go mod tidy`
+
 ### Notes
 
 - Everything seems to live in the module directory.

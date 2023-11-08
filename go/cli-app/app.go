@@ -7,6 +7,7 @@ import (
 	"os"
 	"strings"
 )
+import "example/search"
 import "github.com/urfave/cli/v2"
 
 func main() {
@@ -15,7 +16,8 @@ func main() {
 		Action: func(cCtx *cli.Context) error {
 			pattern := cCtx.Args().Get(0)
 			path := cCtx.Args().Get(1)
-			search(pattern, path)
+			search.Search(pattern, path)
+			xsearch(pattern, path)
 			return nil
 		},
 	}
@@ -25,9 +27,7 @@ func main() {
 	}
 }
 
-func search(pattern string, path string) {
-	fmt.Printf("Searching for '%s' in %s\n", pattern, path)
-
+func xsearch(pattern string, path string) {
 	file, err := os.Open(path)
 	if err != nil {
 		fmt.Printf("Error opening the file: %v\n", err)
