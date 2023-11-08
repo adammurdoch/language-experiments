@@ -1,11 +1,13 @@
 use std::io::BufRead;
 
 pub fn search(pattern: String, input: &mut impl BufRead) {
+    let mut line_number = 1;
     for line in input.lines() {
         let text = line.unwrap();
         if text.contains(&pattern) {
-            println!("{}", text);
+            println!("line {}: {}", line_number, text);
         }
+        line_number += 1;
     }
 }
 
