@@ -188,17 +188,26 @@ Or
 > cli-app
 ```
 
-Adding a dependency on a library:
+Adding a dependency on an external library:
 
 - `const program = require('commander');`
 - `npm install commander`
 
 This also updates `package.json`
 
+Creating a new library
+
+- Basically the same as adding the app
+
+Adding a dependency on a local library:
+
+```shell
+>  npm install ../search
+```
+
 ### Notes
 
-- Very unclear how to implement a CLI app.
-- Doesn't really build a CLI app, simply copies a Javascript file with a `#!` header
+- Very unclear from documentation how to implement a CLI app.
 - Using the node.js installer lead to permission problems when running `npm install`. Using nvm resolved these problems.
 - `npm help` notifies developer on the console that a new version is available, and instructions for how to do this
 
