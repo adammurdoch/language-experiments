@@ -136,8 +136,8 @@ Creating a new library:
 Adding a local dependency:
 
 - Add an import to the app source file
-- `go mod edit -replace example/search=../search`
-- `go mod tidy`
+- `> go mod edit -replace example/search=../search`
+- `> go mod tidy`
 
 ### Notes
 
@@ -153,13 +153,10 @@ Adding a local dependency:
 
 Setting up the environment:
 
-- Using nvm:
-
-```shell
-> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
-> zsh --login
-> nvm install 20
-```
+Using nvm:
+- Install nvm: `> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash`
+- Restart shell 
+- Install node.js `> nvm install 20`
 
 Creating a new application:
 
@@ -191,9 +188,18 @@ Or
 > cli-app
 ```
 
+Adding a dependency on a library:
+
+- `const program = require('commander');`
+- `npm install commander`
+
+This also updates `package.json`
+
 ### Notes
 
-- Very unclear how to implement a CLI app
+- Very unclear how to implement a CLI app.
+- Doesn't really build a CLI app, simply copies a Javascript file with a `#!` header
+- Using the node.js installer lead to permission problems when running `npm install`. Using nvm resolved these problems.
 - `npm help` notifies developer on the console that a new version is available, and instructions for how to do this
 
 ### TODO - node.js CLI app
