@@ -190,10 +190,11 @@ Or
 
 Adding a dependency on an external library:
 
-- `const program = require('commander');`
-- `npm install commander`
+```shell
+> npm install commander
+```
 
-This also updates `package.json`
+This updates `package.json` and installs the package into `node_modules`
 
 Creating a new library
 
@@ -202,8 +203,10 @@ Creating a new library
 Adding a dependency on a local library:
 
 ```shell
->  npm install ../search
+> npm install ../search
 ```
+
+This updates `package.json` and symlinks the library into the app's `node_modules` directory so that changes are reflected.
 
 ### Notes
 

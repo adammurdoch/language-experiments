@@ -1,1 +1,4 @@
-console.log("yo!")
+
+exports.search = (searchText, file) => {
+    console.log(`file=${file}, search=${searchText}`);
+}

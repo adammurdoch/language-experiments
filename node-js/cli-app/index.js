@@ -3,19 +3,20 @@
 const fs = require('fs');
 const readline = require('readline');
 const program = require('commander');
+const search = require('search');
 
 program
     .name('cli-app')
     .description('Search for a string in a text file')
     .argument('<search-text>', 'The text to search for')
     .argument('<file>', 'The file to search')
-    .action((search, file) => {
-        doSearch(search, file)
+    .action((searchText, file) => {
+        doSearch(searchText, file)
     })
     .parse();
 
-function doSearch(search, file) {
-    console.log(`file=${file}, search=${search}`);
+function doSearch(searchText, file) {
+    search.search(searchText, file)
 
     const fileStream = fs.createReadStream(file);
     const rl = readline.createInterface({
@@ -27,7 +28,7 @@ function doSearch(search, file) {
 
     rl.on('line', (line) => {
         lineCounter++;
-        if (line.includes(search)) {
+        if (line.includes(searchText)) {
             console.log(`Line ${lineCounter}: ${line}`);
         }
     });
