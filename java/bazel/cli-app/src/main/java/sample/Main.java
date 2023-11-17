@@ -1,6 +1,8 @@
 package sample;
 
 import search.Search;
+import java.io.*;
+import java.nio.file.*;
 import org.apache.commons.cli.*;
 
 public class Main {
@@ -8,6 +10,13 @@ public class Main {
         Options options = new Options();
         CommandLineParser parser = new DefaultParser();
         CommandLine cmd = parser.parse(options, args);
-        new Search().search();
+        String[] arguments = cmd.getArgs();
+        if (arguments.length != 2) {
+            System.out.println("USAGE: cli-app <pattern> <file>");
+            System.exit(1);
+        }
+        String pattern = arguments[0];
+        Path file = new File(cmd.getArgs()[1]).toPath();
+        new Search().search(pattern, file);
     }
 }
