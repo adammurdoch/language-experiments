@@ -4,6 +4,7 @@ Some experiments implementing the same simple applications in different language
 The goal of these experiments is to explore the tooling for the various language ecosystems, rather than the 
 capabilities of the languages themselves. For each language, the experiments evaluate:
 
+- Using the official documentation
 - Installing the tools
 - Creating a new CLI app and building and running that app
 - Using an external library
@@ -12,6 +13,12 @@ capabilities of the languages themselves. For each language, the experiments eva
 - Using an IDE
 
 The CLI application is a simple `grep` implementation. It uses an CLI arg parsing library and the language's stdlib.
+
+There are implementations for:
+
+- Rust + Cargo
+- Go
+- node.js + npm
 
 # Rust
 
@@ -149,7 +156,7 @@ Adding a local dependency:
 - Add some unit tests
 - Use an IDE
 
-## node.js + NPM
+# node.js + npm
 
 Setting up the environment:
 
@@ -216,12 +223,46 @@ This updates `package.json` and symlinks the library into the app's `node_module
 
 ### TODO - node.js CLI app
 
-- Add a local library
 - Use a workspace
+
+# node.js + Bun
+
+### Notes
+
+- Lots of documented samples
+
+# Java + Bazel
+
+## CLI app
+
+Setting up the environment:
+
+- `brew install bazelisk`
+
+Creating a new application:
+
+- Add empty `WORKSPACE` file
+- Add `.bazelversion` file
+- Add `BUILD` file with Java binary rule
+- Add source file
+
+Building the app:
+
+- `> bazel build cli-app`
+
+Running the app:
+
+- build the app
+- `> bazel-bin/cli-app`
+
+### Notes
+
+- `bazelisk` command can be added to PATH and honors declared Bazel version
+- There does not seem to be a tool to create a new application or library?
 
 ## TODO
 
 - Implement a web app and web service in each language.
-- KMP, Java + (Gradle, Bazel), Haskell, node.js + (npm, yarn, pnpm), Java, C#, python, ruby, Swift
+- KMP, Java + (Gradle, Bazel), Haskell, node.js + (yarn, pnpm, grunt, gulp, webpack, etc), C#, python, ruby, Swift
 - Other languages to look at
   - https://gleam.run
