@@ -38,7 +38,7 @@ Creating a new application:
 ```
 
 This creates a very minimal 'hello world' CLI app, creating the directory.
-Adds a `src/main.rs` source file.
+Adds a `src/main.rs` source file and cargo configuration file.
 
 The application can be run using:
 
@@ -119,13 +119,13 @@ Creating a new application:
 
 Then add a `.go` source file in the directory.
 
-The application can be built using:
+Building the application:
 
 ```shell
 > go build
 ```
 
-The application can be run using:
+Running the application:
 
 ```shell
 > go run . <pattern> <file>
@@ -148,7 +148,7 @@ Adding a local dependency:
 
 ### Notes
 
-- Everything seems to live in the module directory.
+- Everything seems to live in the module directory?
   - If this is the case, complicates understanding larger modules 
 
 ### TODO - Go CLI app
@@ -174,6 +174,7 @@ Creating a new application:
 ```
 
 - Answer the prompts, mostly using the defaults
+- Add `index.js` to the directory
 - Add to `package.json`:
 
 ```
@@ -255,14 +256,21 @@ Running the app:
 - build the app
 - `> bazel-bin/cli-app`
 
+Adding a library:
+
+- Add rule to `BUILD` file
+- Add dependency to app's rule 
+
 ### Notes
 
 - `bazelisk` command can be added to PATH and honors declared Bazel version
 - There does not seem to be a tool to create a new application or library?
+- There does not seem to be a convention for where to place the source files?
+- Apparently the Java binary rule can infer the main class for an application, but I couldn't get it to work.
 
 ## TODO
 
 - Implement a web app and web service in each language.
-- KMP, Java + (Gradle, Bazel), Haskell, node.js + (yarn, pnpm, grunt, gulp, webpack, etc), C#, python, ruby, Swift
+- KMP, Java + Gradle, Haskell, node.js + (bun, yarn, pnpm, grunt, gulp, webpack, etc), C#, python, ruby, Swift
 - Other languages to look at
   - https://gleam.run

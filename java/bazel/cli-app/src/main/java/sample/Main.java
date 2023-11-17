@@ -1,7 +1,9 @@
 package sample;
 
+import search.Search;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("yo!");
+        new Search().search();
     }
 }
