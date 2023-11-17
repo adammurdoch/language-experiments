@@ -259,7 +259,13 @@ Running the app:
 Adding a library:
 
 - Add rule to `BUILD` file
+- Add source files
 - Add dependency to app's rule 
+
+Adding an external dependency:
+
+- Add boilerplate to `WORKSPACE`
+- Add dependency to app's rule
 
 ### Notes
 
