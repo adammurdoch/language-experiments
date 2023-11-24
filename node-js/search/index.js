@@ -16,7 +16,7 @@ exports.search = (searchText, file) => {
     rl.on('line', (line) => {
         lineCounter++;
         if (line.includes(searchText)) {
-            console.log(`Line ${lineCounter}: ${line}`);
+            console.log(`line ${lineCounter}: ${line}`);
         }
     });
 }

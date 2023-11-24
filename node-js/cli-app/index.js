@@ -9,6 +9,7 @@ program
     .argument('<search-text>', 'The text to search for')
     .argument('<file>', 'The file to search')
     .action((searchText, file) => {
+        console.log(`Searching for '${searchText}' in ${file}`);
         search.search(searchText, file)
     })
     .parse();

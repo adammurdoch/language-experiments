@@ -8,8 +8,6 @@ import (
 )
 
 func Search(pattern string, path string) {
-	fmt.Printf("Searching for '%s' in %s\n", pattern, path)
-
 	file, err := os.Open(path)
 	if err != nil {
 		fmt.Printf("Error opening the file: %v\n", err)

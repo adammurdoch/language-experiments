@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -13,6 +14,7 @@ func main() {
 		Action: func(cCtx *cli.Context) error {
 			pattern := cCtx.Args().Get(0)
 			path := cCtx.Args().Get(1)
+			fmt.Printf("Searching for '%s' in %s\n", pattern, path)
 			search.Search(pattern, path)
 			return nil
 		},
