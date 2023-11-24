@@ -1,25 +1,43 @@
 apps {
-    app("rust-cli", "rust/cli-app", listOf("cargo", "run"))
-    app("go-cli", "go/cli-app", listOf("go", "run", "."))
-    app("node-js-cli", "node-js/cli-app", listOf("node", "index.js"))
-    app("java-bazel-cli", "java/bazel", listOf("bazel-bin/cli-app"), listOf("bazel", "build", "cli-app"))
+    app("rust-cli", "rust/cli-app", "cargo run") {
+        testCommand("cargo test")
+    }
+    app("go-cli", "go/cli-app", "go run .")
+    app("node-js-cli", "node-js/cli-app", "node index.js")
+    app("java-bazel-cli", "java/bazel", "bazel-bin/cli-app") {
+        buildCommand("bazel build cli-app")
+    }
 }
 
-fun apps(builder: AppBuilder.() -> Unit) {
+fun apps(builder: AppsBuilder.() -> Unit) {
     val apps = Apps(project)
     builder(apps)
     apps.registerTasks()
 }
 
-interface AppBuilder {
-    fun app(name: String, directory: String, runCommand: List<String>, buildCommand: List<String>? = null)
+interface AppsBuilder {
+    fun app(name: String, directory: String, runCommand: String, config: AppBuilder.() -> Unit = {})
+
+    fun app(name: String, directory: String, runCommand: List<String>, config: AppBuilder.() -> Unit = {})
 }
 
-class Apps(private val project: Project) : AppBuilder {
+interface AppBuilder {
+    fun buildCommand(command: String)
+
+    fun testCommand(command: String)
+}
+
+class Apps(private val project: Project) : AppsBuilder {
     private val apps = mutableListOf<CliApp>()
 
-    override fun app(name: String, directory: String, runCommand: List<String>, buildCommand: List<String>?) {
-        apps.add(CliApp(name, project.file(directory), runCommand, buildCommand))
+    override fun app(name: String, directory: String, runCommand: String, config: AppBuilder.() -> Unit) {
+        app(name, directory, runCommand.split(" "), config)
+    }
+
+    override fun app(name: String, directory: String, runCommand: List<String>, config: AppBuilder.() -> Unit) {
+        val builder = DefaultAppBuilder()
+        config(builder)
+        apps.add(CliApp(name, project.file(directory), runCommand, builder.buildCommand, builder.testCommand))
     }
 
     fun registerTasks() {
@@ -42,6 +60,37 @@ class Apps(private val project: Project) : AppBuilder {
         project.tasks.register("run") {
             dependsOn(runTasks)
         }
+
+        val testTasks = apps.mapNotNull { app ->
+            if (app.testCommand != null) {
+                project.tasks.register("${app.name}Test") {
+                    doLast {
+                        exec {
+                            commandLine = app.testCommand
+                            workingDir = app.directory
+                        }
+                    }
+                }
+            } else {
+                null
+            }
+        }
+        project.tasks.register("test") {
+            dependsOn(testTasks)
+        }
+    }
+
+    private class DefaultAppBuilder : AppBuilder {
+        var buildCommand: List<String>? = null
+        var testCommand: List<String>? = null
+
+        override fun buildCommand(command: String) {
+            buildCommand = command.split(" ")
+        }
+
+        override fun testCommand(command: String) {
+            testCommand = command.split(" ")
+        }
     }
 }
 
@@ -49,5 +98,6 @@ class CliApp(
     val name: String,
     val directory: File,
     val runCommand: List<String>,
-    val buildCommand: List<String>? = null
+    val buildCommand: List<String>?,
+    val testCommand: List<String>?
 )

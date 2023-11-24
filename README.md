@@ -70,6 +70,12 @@ Adding a local dependency:
 > cargo add --path ../search
 ```
 
+Running unit tests:
+
+```shell
+> cargo test
+```
+
 ### Notes
 
 - Tutorials focussed on building a particular type of app - CLI app, web app, network service
