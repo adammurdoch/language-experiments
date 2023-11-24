@@ -1,19 +1,24 @@
-val apps = Apps(project) {
+apps {
     app("rust-cli", "rust/cli-app", listOf("cargo", "run"))
     app("go-cli", "go/cli-app", listOf("go", "run", "."))
     app("node-js-cli", "node-js/cli-app", listOf("node", "index.js"))
     app("java-bazel-cli", "java/bazel", listOf("bazel-bin/cli-app"), listOf("bazel", "build", "cli-app"))
 }
-apps.registerTasks()
 
-class Apps(private val project: Project, builder: Apps.() -> Unit) {
-    val apps = mutableListOf<CliApp>()
+fun apps(builder: AppBuilder.() -> Unit) {
+    val apps = Apps(project)
+    builder(apps)
+    apps.registerTasks()
+}
 
-    init {
-        builder(this)
-    }
+interface AppBuilder {
+    fun app(name: String, directory: String, runCommand: List<String>, buildCommand: List<String>? = null)
+}
 
-    fun app(name: String, directory: String, runCommand: List<String>, buildCommand: List<String>? = null) {
+class Apps(private val project: Project) : AppBuilder {
+    private val apps = mutableListOf<CliApp>()
+
+    override fun app(name: String, directory: String, runCommand: List<String>, buildCommand: List<String>?) {
         apps.add(CliApp(name, project.file(directory), runCommand, buildCommand))
     }
 
