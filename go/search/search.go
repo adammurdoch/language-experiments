@@ -19,7 +19,7 @@ func Search(pattern string, path string) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		if strings.Contains(line, pattern) {
-			fmt.Printf("line %d: %s\n", lineNumber, line)
+			fmt.Printf("line %d: %s\n", lineNumber, strings.TrimSpace(line))
 		}
 		lineNumber++
 	}

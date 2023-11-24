@@ -3,8 +3,6 @@ const fs = require('fs');
 const readline = require('readline');
 
 exports.search = (searchText, file) => {
-    console.log(`file=${file}, search=${searchText}`);
-
     const fileStream = fs.createReadStream(file);
     const rl = readline.createInterface({
         input: fileStream,
@@ -16,7 +14,7 @@ exports.search = (searchText, file) => {
     rl.on('line', (line) => {
         lineCounter++;
         if (line.includes(searchText)) {
-            console.log(`line ${lineCounter}: ${line}`);
+            console.log(`line ${lineCounter}: ${line.trim()}`);
         }
     });
 }

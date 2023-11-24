@@ -17,6 +17,7 @@ public class Main {
         }
         String pattern = arguments[0];
         Path file = new File(cmd.getArgs()[1]).toPath();
+        System.out.println(String.format("Searching for '%s' in %s", pattern, file));
         new Search().search(pattern, file);
     }
 }

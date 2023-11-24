@@ -5,7 +5,7 @@ pub fn search(pattern: String, input: &mut impl BufRead) {
     for line in input.lines() {
         let text = line.unwrap();
         if text.contains(&pattern) {
-            println!("line {}: {}", line_number, text);
+            println!("line {}: {}", line_number, text.trim());
         }
         line_number += 1;
     }
