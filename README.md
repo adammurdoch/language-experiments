@@ -12,13 +12,14 @@ capabilities of the languages themselves. For each language, the experiments eva
 - Implementing and running tests
 - Using an IDE
 
-The CLI application is a simple `grep` implementation. It uses an CLI arg parsing library and the language's stdlib.
+The CLI application is a simple `grep` implementation. It uses a CLI arg parsing library and the language's stdlib.
 
 There are implementations for:
 
 - Rust + Cargo
 - Go
 - node.js + npm
+- Java + Bazel
 
 # Rust
 
@@ -29,6 +30,8 @@ Setting up the environment:
 ```shell
 > curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 ```
+
+This installs the rust tooling and adds it to the `PATH`.
 
 Creating a new application:
 
